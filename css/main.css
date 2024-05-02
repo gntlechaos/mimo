@@ -1,0 +1,156 @@
+:root {
+
+    /*  Background  */
+    --background-main: #010409;
+    --background-lite: #0D1117;
+    --background-litest: #161B22;
+
+    /*  Border  */
+    --border-lite: #30363D;
+    --border-litest: #30363DB3;
+
+    --border-radius-main: 6px;
+    --border-radius-sharper: 3px;
+    --border-radius-rounder: 12px;
+
+    /*  Font  */
+    --font-main: #E6EDF3;
+    --font-dim: #848D97;
+    --font-danger: #F85149;
+    
+    --font-size-title-big: 1.5em;
+    --font-size-title: 1.25em;
+    --font-size-title-small: 1.125em;
+    --font-size-main: 1em;
+    --font-size-secondary: 0.875em;
+    --font-size-detail: 0.75em;
+    
+    /*  Padding  */
+    --padding-main: 16px;
+    --padding-high: 24px;
+    --padding-low: 8px;
+    
+    /*  Layout  */
+    --topbar-height: 64px;
+    --sidebar-width: 320px;
+}
+
+* {
+    /* Setting Defaults   */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    box-sizing: border-box;
+    color: var(--font-main);
+}
+
+h1,h2,h3{
+    margin: 0;
+}
+
+body{
+    background-color: var(--background-main);
+    display: flex;
+    justify-content: space-between;
+}
+
+header{
+    
+    position: absolute;
+    
+    height: var(--topbar-height);
+    width: 100%;
+    z-index: 10;
+    
+    padding: var(--padding-main);
+    
+    background-color: var(--background-main);
+    border-bottom: 1px solid var(--border-lite);
+    
+    
+}
+
+aside{
+    
+    position: -webkit-sticky;
+    position: sticky;
+    
+    height: 100vh;
+    width: var(--sidebar-width);
+    
+    top: 0;
+    margin-top: var(--topbar-height);
+    padding: var(--padding-main);
+    
+    background-color: var(--background-lite);
+    border-right: 1px solid var(--border-litest);  
+    
+}
+
+.main-content{
+    
+    width: calc(100vw - var(--sidebar-width));
+    
+    margin-top: var(--topbar-height);
+    padding-top: var(--padding-main);
+    padding-bottom: var(--padding-main);
+    
+    padding-right: var(--padding-high);
+    padding-left: var(--padding-high);
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.feed{
+    width: 60%;
+}
+
+.feed h2{
+    font-size: var(--font-size-title-big);
+    color: var(--font-main);
+    margin-bottom: var(--padding-high);
+}
+
+
+.pinboard{
+     width: 40%;
+}
+
+/* UI Elements*/
+
+.card{
+    
+    background-color: var(--background-main);
+    border: 1px solid var(--border-lite);
+    border-radius: var(--border-radius-main);
+    padding: var(--padding-main);
+    
+    margin-top: var(--padding-low);
+    margin-bottom: var(--padding-low);
+    
+}
+
+.card h3{
+    font-size: var(--font-size-title);
+    font-weight: 700;
+    color: var(--font-main);
+    color: var(--font-main);
+}
+
+.card p{
+   font-size: var(--font-size-secondary); 
+   color: var(--font-main);
+   line-height: 1.5;
+   margin-top: var(--padding-main);
+   margin-bottom: var(--padding-main);
+}
+
+.lite{
+    
+    background-color: var(--background-lite);
+    padding: var(--padding-main);
+    
+}
+
+.card-litest{
+    
+}
