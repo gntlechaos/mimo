@@ -4,10 +4,27 @@
     --background-main: #010409;
     --background-lite: #0D1117;
     --background-litest: #161B22;
+    
+    --button-green: #238636;
+    --button-green-hover: #29903B;
+    --button-green-active: #2E9A40;
+    --button-green-disabled: #105823;
+    
+    --button-yellow: #866A23;
+    --button-yellow-hover: #907329;
+    --button-yellow-active: #9A7B2E;
+    --button-yellow-disabled: #584410;
+    
+    --button-red: #862323;
+    --button-red-hover: #902929;
+    --button-red-active: #9A2E2E;
+    --button-red-disabled: #581010;
+
 
     /*  Border  */
     --border-lite: #30363D;
     --border-litest: #30363DB3;
+    --border-lite-ultra: #f0f6fc1a;
 
     --border-radius-main: 6px;
     --border-radius-sharper: 3px;
@@ -28,6 +45,7 @@
     /*  Padding  */
     --padding-main: 16px;
     --padding-high: 24px;
+    --padding-high-ultra: 32px;
     --padding-low: 8px;
     
     /*  Layout  */
@@ -154,3 +172,38 @@ aside{
 .card-litest{
     
 }
+
+
+aside .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--padding-high-ultra);
+}
+
+aside .header h2{
+    font-size: var( --font-size-secondary);
+    font-weight: 600;
+    color: var(--font-main);
+}
+
+aside .header .new-button{
+    box-sizing: border-box;
+    font-size: var( --font-size-detail);
+    font-weight: 500;
+    padding-left: var(--padding-low);
+    padding-right: var(--padding-low);
+    background-color: var(--button-green);
+    border-radius: var(--border-radius-main);
+    border: 1px solid var(--border-lite-ultra);
+    cursor: pointer;
+}
+
+aside .header .new-button:hover{
+    background-color: var(--button-green-hover);
+}
+
+aside .header .new-button:active{
+    background-color: var(--button-green-active);
+}
+

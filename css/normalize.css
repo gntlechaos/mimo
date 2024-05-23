@@ -222,6 +222,7 @@ button:-moz-focusring,
   outline: 1px dotted ButtonText;
 }
 
+
 /**
  * Correct the padding in Firefox.
  */
@@ -358,4 +359,9 @@ template {
     clip: rect(0, 0, 0, 0);
     word-wrap: normal;
     border: 0;
+}
+
+button {
+outline: none;
+border: none;
 }
