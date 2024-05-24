@@ -48,6 +48,8 @@
     --padding-high-ultra: 32px;
     --padding-low: 8px;
     
+    --padding-input-ver: 5px;
+    --padding-input-hor: 12px;
     /*  Layout  */
     --topbar-height: 64px;
     --sidebar-width: 320px;
@@ -179,6 +181,7 @@ aside .header {
     justify-content: space-between;
     align-items: center;
     margin-top: var(--padding-high-ultra);
+    margin-bottom: var(--padding-main);
 }
 
 aside .header h2{
@@ -191,12 +194,21 @@ aside .header .new-button{
     box-sizing: border-box;
     font-size: var( --font-size-detail);
     font-weight: 500;
+    padding: 4px;
     padding-left: var(--padding-low);
     padding-right: var(--padding-low);
     background-color: var(--button-green);
     border-radius: var(--border-radius-main);
     border: 1px solid var(--border-lite-ultra);
     cursor: pointer;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+aside .header .new-button span{
+    padding-left: 5px;
 }
 
 aside .header .new-button:hover{
@@ -207,3 +219,116 @@ aside .header .new-button:active{
     background-color: var(--button-green-active);
 }
 
+aside .header .new-button:disabled{
+    background-color: var(--button-green-disabled);
+    cursor: not-allowed;
+}
+
+aside .header .new-button .new-icon{
+    fill: var(--font-main);
+}
+
+aside .project-search{
+    width: 100%;
+    background-color: var(--background-litest);
+    outline: none;
+    border: 1px solid var(--border-litest);
+    border-radius: var(--border-radius-main);
+    padding-top: var(--padding-input-ver);
+    padding-bottom: var(--padding-input-ver);
+    padding-left: var(--padding-input-hor);
+    padding-right: var(--padding-input-hor);
+    margin-bottom: var(--padding-main);
+
+    font-size: var(--font-size-secondary);
+
+}   
+
+aside .project-list{
+    list-style: none;
+    padding: 0;
+    font-size: var(--font-size-secondary);
+    
+}
+
+aside .project-list li{
+    margin-top: var(--padding-low);
+   display: flex;
+   
+}
+
+aside .project-list li .project-name {
+    margin-bottom: var(--padding-low);
+    margin-left: var(--padding-low);
+}
+
+aside .project-list li .project-name a{
+    text-decoration: none;
+    
+}
+
+aside .project-list li .project-name a:hover{
+    text-decoration: underline;
+}
+
+
+
+aside .project-list li .project-author{
+    display: flex;
+    
+}
+
+aside .project-list li .project-author img{
+    height: 16px;
+    width: 16px;
+    border-radius: 16px;
+}
+
+aside .project-list li .project-author img:not(:first-child){
+    margin-left: calc(-1 * var(--padding-low));
+    margin-top: -2px;
+    box-sizing: content-box;
+    border: 2px solid var(--background-lite);
+}
+
+aside .project-list li .author-info-popup{
+   display: none;
+   position: absolute;
+   z-index: 1;
+   margin-top: 26px;
+   margin-left: -5px;
+   background-color: var(--background-litest);
+   border: 1px solid var(--border-litest);
+   border-radius: var(--border-radius-main);
+   padding: calc(1 * var(--padding-low));
+   padding-top: calc(0.8 * var(--padding-low));
+   padding-bottom: calc(0.8 * var(--padding-low));
+   font-size: var(--font-size-detail);
+}
+aside .project-list li .author-info-popup ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+aside .project-list li .author-info-popup ul li{
+    margin: 0;
+}
+aside .project-list li .author-info-popup ul li:not(:first-of-type){
+    padding-top: 5px;
+}
+
+aside .project-list li .author-info-popup::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%; 
+    left: 12px;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent var(--border-litest) transparent;
+  }
+
+aside .project-list li .project-author:hover  .author-info-popup{
+   display: block; 
+   
+}
