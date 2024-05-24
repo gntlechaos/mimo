@@ -84,9 +84,33 @@ header{
     
     background-color: var(--background-main);
     border-bottom: 1px solid var(--border-lite);
+    display: flex;
     
     
 }
+
+header .menu-button{
+    height: 32px;
+    width: 32px;
+
+    box-sizing: content-box;
+    background: var(--background-main);
+
+   
+    border: 1px solid var(--border-lite);
+    border-radius: var(--border-radius-main);
+    padding: 0;
+
+
+}
+
+header .menu-button svg{
+    
+    fill: var(--font-dim);
+    margin: var(--padding-low);;
+}
+
+
 
 aside{
     
@@ -171,9 +195,7 @@ aside{
     
 }
 
-.card-litest{
-    
-}
+
 
 
 aside .header {
