@@ -34,6 +34,7 @@
     --font-main: #E6EDF3;
     --font-dim: #848D97;
     --font-danger: #F85149;
+    --font-link: #4493f8;
     
     --font-size-title-big: 1.5em;
     --font-size-title: 1.25em;
@@ -72,6 +73,10 @@ body{
     justify-content: space-between;
 }
 
+body.lite{
+    background-color: var(--background-lite);
+}
+
 header{
     
     position: absolute;
@@ -85,6 +90,8 @@ header{
     background-color: var(--background-main);
     border-bottom: 1px solid var(--border-lite);
     display: flex;
+
+    align-items: center;
     
     
 }
@@ -101,6 +108,7 @@ header .menu-button{
     border-radius: var(--border-radius-main);
     padding: 0;
 
+    cursor: pointer;
 
 }
 
@@ -111,6 +119,18 @@ header .menu-button svg{
 }
 
 
+header .logo{
+    filter: invert(100%);
+    pointer-events: none;
+    height: 16px;
+    margin-left: var(--padding-high);
+}
+
+header .heading{
+    margin-left: var(--padding-main);
+    font-size: var(--font-size-secondary);
+    font-weight: 600;
+}
 
 aside{
     
@@ -136,16 +156,26 @@ aside{
     margin-top: var(--topbar-height);
     padding-top: var(--padding-main);
     padding-bottom: var(--padding-main);
-    
-    padding-right: var(--padding-high);
-    padding-left: var(--padding-high);
+     
     
     display: flex;
-    flex-direction: column;
 }
+
+.main-content.home{
+    
+    width: calc(100vw - var(--sidebar-width));
+}
+
+.main-content.editing{
+    
+    width: 100vw;
+}
+
 
 .feed{
     width: 60%;
+    padding-right: var(--padding-high);
+    padding-left: var(--padding-high);
 }
 
 .feed h2{
@@ -154,15 +184,29 @@ aside{
     margin-bottom: var(--padding-high);
 }
 
-
-.pinboard{
-     width: 40%;
+.edit-feed{
+    width: 70%;
+    padding-right: var(--padding-high);
+    padding-left: var(--padding-high);
 }
 
-/* UI Elements*/
 
-.card{
-    
+.main-content.home .pinboard{
+    width: calc(100% - (60% + var(--padding-high)));
+}
+
+.main-content.editing .pinboard{
+    width: calc(100% - (70% + var(--padding-high)));
+}
+
+.pinboard h2{
+    font-size: var( --font-size-secondary);
+    font-weight: 600;
+    color: var(--font-main);
+}
+
+.card {
+
     background-color: var(--background-main);
     border: 1px solid var(--border-lite);
     border-radius: var(--border-radius-main);
@@ -170,7 +214,7 @@ aside{
     
     margin-top: var(--padding-low);
     margin-bottom: var(--padding-low);
-    
+
 }
 
 .card h3{
@@ -188,14 +232,143 @@ aside{
    margin-bottom: var(--padding-main);
 }
 
-.lite{
-    
-    background-color: var(--background-lite);
-    padding: var(--padding-main);
-    
+.update .heading{
+
+    display: flex;
+
 }
 
 
+
+.update .heading .avatar{
+
+    border-radius: 40px;
+
+}
+
+.update .heading{
+
+    display: flex;
+
+}
+
+.update .heading .details{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    padding-left: var(--padding-main);
+
+    font-size: var(--font-size-secondary);
+}
+
+.update .heading .details .time-signature, .main-content .pinboard .pins .pin .pin-content .time-signature{
+    color: var(--font-dim);
+    font-size: var(--font-size-detail);
+}
+
+.update .heading .details .update-summary{
+    color: var(--font-dim);
+}
+
+.update .heading .details .update-summary .author-name{
+    color: var(--font-main);
+    font-weight: 600;
+}
+
+.update .card-content{
+    margin: var(--padding-main);
+    padding: var(--padding-main);
+    background-color: var(--background-litest);
+    border-radius: var(--border-radius-main);
+}
+
+.edit {
+    padding: 0 !important;
+}
+
+.edit .heading{
+    background-color: var(--background-litest);
+    border-top-left-radius: var(--border-radius-main);
+    border-top-right-radius: var(--border-radius-main);
+    border-bottom: 1px solid var(--border-lite);
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--padding-low);
+    padding-left: var(--padding-main);
+    padding-right: var(--padding-main);
+    
+}
+.edit .heading .title{
+    color: var(--font-main);
+    font-weight: 600;
+    font-size: var(--font-size-secondary);
+    
+}
+
+.edit .heading .word-count{
+
+    color: var(--font-dim);
+    font-size: var(--font-size-secondary);
+
+}
+.edit .heading .word-count[plural=false]::after{
+    content: " Palavra";
+   }
+   
+.edit .heading .word-count[plural=true]::after{
+ content: " Palavras";
+}
+    
+
+.edit .card-content{
+    background-color: var(--background-lite);
+    border-bottom-left-radius: var(--border-radius-main);
+    border-bottom-right-radius: var(--border-radius-main);
+    overflow:hidden;
+
+    color: var(--font-main) !important;
+    font-size: var(--font-size-title-small);
+
+    
+    overflow: visible;
+    
+    padding-left: var(--padding-high);
+    padding-right: var(--padding-high);
+    padding-top: var(--padding-main);
+    padding-bottom: var(--padding-main);
+
+}
+
+.edit.edit-text{
+    min-height: 200px;
+
+}
+
+.card.lite{
+    background-color: var(--background-lite);
+    padding: var(--padding-main);
+}
+
+.metadata .card-content{
+    display: flex;
+    flex-direction: column;
+}
+
+.metadata h2{
+    padding-bottom: var(--padding-low);
+}
+.metadata .card-content .section{
+    padding-bottom: var(--padding-low);
+}
+.metadata .card-content .section .title{
+    color: var(--font-dim);
+    font-size: var(--font-size-secondary);
+}
 
 
 aside .header {
@@ -263,6 +436,7 @@ aside .project-search{
     margin-bottom: var(--padding-main);
 
     font-size: var(--font-size-secondary);
+    color: var(--font-dim);
 
 }   
 
@@ -273,47 +447,47 @@ aside .project-list{
     
 }
 
-aside .project-list li{
+aside .project-list li, .project{
     margin-top: var(--padding-low);
-   display: flex;
+    display: flex;
    
 }
 
-aside .project-list li .project-name {
+aside .project-list li .project-name, .project .project-name{
     margin-bottom: var(--padding-low);
     margin-left: var(--padding-low);
 }
 
-aside .project-list li .project-name a{
+aside .project-list li .project-name a, .project .project-name a{
     text-decoration: none;
     
 }
 
-aside .project-list li .project-name a:hover{
+aside .project-list li .project-name a:hover, .project .project-name a:hover{
     text-decoration: underline;
 }
 
 
 
-aside .project-list li .project-author{
+aside .project-list li .project-author, .project .project-author{
     display: flex;
     
 }
 
-aside .project-list li .project-author img{
+aside .project-list li .project-author img, .project .project-author img{
     height: 16px;
     width: 16px;
     border-radius: 16px;
 }
 
-aside .project-list li .project-author img:not(:first-child){
+aside .project-list li .project-author img:not(:first-child), .project .project-author img:not(:first-child){
     margin-left: calc(-1 * var(--padding-low));
     margin-top: -2px;
     box-sizing: content-box;
     border: 2px solid var(--background-lite);
 }
 
-aside .project-list li .author-info-popup{
+aside .project-list li .author-info-popup, .project .author-info-popup{
    display: none;
    position: absolute;
    z-index: 1;
@@ -327,19 +501,19 @@ aside .project-list li .author-info-popup{
    padding-bottom: calc(0.8 * var(--padding-low));
    font-size: var(--font-size-detail);
 }
-aside .project-list li .author-info-popup ul{
+aside .project-list li .author-info-popup ul, .project .author-info-popup ul{
     list-style: none;
     padding: 0;
     margin: 0;
 }
-aside .project-list li .author-info-popup ul li{
+aside .project-list li .author-info-popup ul li, .project .author-info-popup ul li{
     margin: 0;
 }
-aside .project-list li .author-info-popup ul li:not(:first-of-type){
+aside .project-list li .author-info-popup ul li:not(:first-of-type),.project .author-info-popup ul li:not(:first-of-type){
     padding-top: 5px;
 }
 
-aside .project-list li .author-info-popup::after {
+aside .project-list li .author-info-popup::after, .project .author-info-popup::after{
     content: " ";
     position: absolute;
     bottom: 100%; 
@@ -350,7 +524,108 @@ aside .project-list li .author-info-popup::after {
     border-color: transparent transparent var(--border-litest) transparent;
   }
 
-aside .project-list li .project-author:hover  .author-info-popup{
+aside .project-list li .project-author:hover  .author-info-popup,  .project .project-author:hover .author-info-popup{
    display: block; 
    
 }
+
+.main-content .pinboard .pins{
+    padding: 0;
+    padding-top: var(--padding-low);
+    list-style: none;
+    
+   
+}
+
+.main-content .pinboard .pins .pin{
+    margin-left: var(--padding-low);
+    padding-bottom: var(--padding-high);
+    border-left: 1px solid var(--border-lite);
+    display: flex;
+}
+
+.main-content .pinboard .pins .pin:last-child{
+    padding-bottom: calc(1.25 * var(--padding-high));
+}
+
+.main-content .pinboard .pins .pin .dot {
+    margin-left: calc((-1 * var(--padding-low)) - 0.5px);
+    margin-top: calc((-1 * var(--padding-low)));
+   
+}
+
+.main-content .pinboard .pins li .dot svg{
+    fill: var(--border-lite);
+   
+}
+
+.main-content .pinboard .pins .pin .pin-content{
+    display: flex;
+    flex-direction: column;
+    margin-left: var(--padding-main);
+    margin-top: calc((-1 * var(--padding-low)));
+}
+
+.main-content .pinboard .pins .pin .pin-title{
+    font-size: var(--font-size-secondary);
+    margin-top: calc(0.4 * var(--padding-low));
+    word-wrap: break-word;
+    line-height: 1.5;
+    text-decoration: none;
+}
+
+
+.main-content .pinboard .link-all{
+    margin-left: calc((4 * var(--padding-low)));
+    margin-top: calc((-4.5 * var(--padding-low)));
+}
+
+aside .link-all {
+    margin-top: calc((-1 * var(--padding-low)));
+}
+
+
+.main-content .pinboard .link-all a, aside .link-all a{
+    font-size: var(--font-size-detail);
+    color: var(--font-dim);
+    text-decoration: none;
+}
+
+.main-content .pinboard .link-all a:hover, aside .link-all a:hover{
+    color: var(--font-link);
+    cursor: pointer;
+}
+
+.main-content .pinboard .pins .pin .pin-title:hover{
+    color: var(--font-link);
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
+/* Overriding Quill.js themes */
+.ql-editor.ql-blank::before{
+    color: var(--font-dim) !important;
+    font-size: var(--font-size-secondary);
+    font-style: normal !important;
+    left: var(--padding-high) !important;
+    right: var(--padding-high) !important;
+}
+
+.ql-editor {
+    line-height: 1.5 !important;
+    padding: 0 !important;
+  }
+
+  .ql-editor p{
+
+    padding-bottom: var(--padding-low) !important;
+
+  }
+
+  .ql-bubble .ql-tooltip {
+    background-color: var(--background-litest) !important;
+    border: 1px solid var(--border-lite);
+    border-radius: var(--border-radius-main) !important;
+    color: var(--font-main) !important;
+  }

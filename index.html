@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+    <title>Painel Interposto</title>
     <link href="css/normalize.css" type="text/css" rel="stylesheet">
     <link href="css/font.css" type="text/css" rel="stylesheet">
     <link href="css/main.css" type="text/css" rel="stylesheet">
@@ -17,6 +18,7 @@
                 <path d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z"></path>
             </svg>
         </button>
+        <object class="logo" type="image/svg+xml" data="https://midia.interposto.com/icones/logo.svg" aria-label="Interposto">Interposto</object>
     </header>
     <aside>
     
@@ -36,7 +38,7 @@
         <ul class="project-list">
             <li>
                 <div class="project-author">
-                    <img width="16px" height="16px" class="avatar" src="https://avatars.githubusercontent.com/u/64212308?s=16&v=4"/>
+                    <img width="16px" height="16px" src="https://avatars.githubusercontent.com/u/64212308?s=16&v=4"/>
                     <img width="16px" height="16px" class="avatar" src="https://avatars.githubusercontent.com/u/64212308?s=16&v=4"/>
                     <span class="author-info-popup">
                         <ul>
@@ -65,44 +67,77 @@
                 
             </li>
         </ul>
+        <div class="link-all">
+            <a href="#">Mostrar mais</a>
+        </div>
         
         
         
     </aside>
-    <div class="main-content">
+    <div class="main-content home">
         <div class="feed">
             
             <h1 class="sr-only">Painel</h1>
             <h2>Meu Feed</h2>
-            
-            <div class="card">
-                <h3>Testando outro tipo de gráfico</h3>
-                <!-- <div id="zing"></div> -->
-            </div>
-            
-            <div class="card">
-                <h3>Visualizações do Site</h1>
-                <div id="general-stats">
-                
+       
+            <div class="card lite update">
+                <div class="heading">
+                    <img class="avatar" width="40px" height="40px" class="avatar" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEWhoaFpDRRbAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC"/>
+                    <div class="details">
+                        <span class="update-summary"><span class="author-name">Francisco Stelzer</span> criou um novo projeto.</span>
+                        <span class="time-signature">5 dias atrás</span>
+                    </div>
                 </div>
-                <div id="specific-stats">
+                <div class="card-content">
+                    <div class="project">
+                        <div class="project-author">
+                            <img width="16px" height="16px" src="https://avatars.githubusercontent.com/u/64212308?s=16&v=4"/>
+                            <img width="16px" height="16px" class="avatar" src="https://avatars.githubusercontent.com/u/64212308?s=16&v=4"/>
+                            <span class="author-info-popup">
+                                <ul>
+                                    <li>Francisco Stelzer</li>
+                                    <li> Julia Salzano</li>
+                                </ul> 
+                            </span>
+                        </div>
+                        <span class="project-name">
+                            <a href="#">Construção sustentável</a>
+                        </span>
+                    </div>
                 </div>
             </div>
-            
-            <div class="card">
-                <h3>Updates to your homepage feed</h1>
-                <p>We've combined the power of the Following feed with the For you feed so there’s one place to discover content on GitHub. There’s improved filtering so you can customize your feed exactly how you like it, and a shiny new visual design. ✨</p>
-                <div id="chart">
-                
-                </div>
-                
-            </div>
-            
-            <div class="card lite">
-                <h3>Hey</h1>
+    </div>
+    <div class="pinboard">
+        <div class="card lite">
+            <h2>Últimos anúncios</h2>
+            <ul class="pins">
+                <li class="pin">
+                    <div  class="dot">
+                        <svg height="16" viewBox="0 0 16 16" width="16">
+                            <path d="M8 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z"></path>
+                        </svg>
+                    </div>
+                    <div class="pin-content">
+                        <span class="time-signature">5 dias atrás</span>
+                        <a class="pin-title">Erros no Modo Escuro foram corrigidos no site...</a>
+                    </div>
+                </li>
+                <li class="pin">
+                    <div  class="dot">
+                        <svg height="16" viewBox="0 0 16 16" width="16">
+                            <path d="M8 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z"></path>
+                        </svg>
+                    </div>
+                    <div class="pin-content">
+                        <span class="time-signature">8 dias atrás</span>
+                        <a class="pin-title">Mudanças na política de AI...</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="link-all">
+                <a href="#">Ver todos os anúncios →</a>
             </div>
         </div>
-        <div class="pinboard"></div>
     </div>
 </body>
 </html>
