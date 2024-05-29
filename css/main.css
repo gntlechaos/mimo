@@ -344,6 +344,36 @@ aside{
 
 }
 
+.edit .card-content .input-field{
+    display: flex;
+    flex-direction: column;
+}
+
+.edit .card-content .input-field .label {
+    color: var(--font-main);
+    font-size: var(--font-size-detail);
+    font-weight: 600;
+    margin-bottom: var(--padding-low);
+}
+
+.edit .card-content .input-field input{
+    font-size: var(--font-size-secondary);
+    background-color: var(--background-lite);
+    border: 1px  solid var(--border-lite);
+    border-radius: var(--border-radius-main);
+    outline: none;
+    padding: calc(1.5 * var(--padding-low));
+    padding-top: calc(1* var(--padding-low));
+    padding-bottom: calc(1 * var(--padding-low));
+    margin-bottom: var(--padding-main);
+    
+}
+
+.edit .card-content .input-field input::placeholder{
+    color: var(--font-dim);
+    font-size: var(--font-size-secondary);
+}
+
 .edit.edit-text{
     min-height: 200px;
 
