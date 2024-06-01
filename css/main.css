@@ -35,6 +35,9 @@
     --font-dim: #848D97;
     --font-danger: #F85149;
     --font-link: #4493f8;
+
+    --font-error: #9A2E2E;
+    --font-success: #2E9A40;
     
     --font-size-title-big: 1.5em;
     --font-size-title: 1.25em;
@@ -632,6 +635,114 @@ aside .link-all {
     cursor: pointer;
 
 }
+
+.main-content.login {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-lite);
+    background: linear-gradient(0deg, rgba(13,17,23,1) 0%, rgba(22,27,34,1) 100%);
+
+}
+.main-content.login .card {
+    text-align: center;
+    padding: var(--padding-high);
+    background-color: var(--background-litest);
+   border-radius: var(--border-radius-rounder);
+   position: absolute;
+
+}
+.main-content.login .card h2{
+ font-size: var(--font-size-title);
+ font-weight: 500;
+ padding: var(--padding-main);
+
+}
+
+.main-content.login .card h3{
+    font-size: var(--font-size-secondary);
+    color: var(--font-dim);
+    font-weight:normal;
+}
+
+.main-content.login .card form{
+    display: flex;
+    flex-direction: column;
+    padding: var(--padding-main);
+}
+
+.main-content.login .card form label{
+    font-size: var(--font-size-secondary);
+    color: var(--font-main);
+    text-align: left;
+    margin-bottom: var(--padding-low);
+    margin-top: var(--padding-low);
+}
+
+.main-content.login .card form input[type=email],.main-content.login .card form input[type=password]{
+    background-color: var(--background-litest);
+    border-radius: var(--border-radius-main);
+    border: 1px solid var(--border-lite);
+    padding-left: var(--padding-low);
+    padding-right: var(--padding-low);
+    padding-top: calc(0.75 * var(--padding-low));
+    padding-bottom: calc(0.75 * var(--padding-low));
+    font-size: var(--font-size-secondary);
+}
+
+.main-content.login .card form input[type=submit]{
+    margin-top: var(--padding-main);
+    background-color: var(--button-green);
+    border-radius: var(--border-radius-main);
+    border: 1px solid var(--border-lite-ultra);
+    font-size: var(--font-size-secondary);
+    padding-left: var(--padding-low);
+    padding-right: var(--padding-low);
+    padding-top: calc(0.75 * var(--padding-low));
+    padding-bottom: calc(0.75 * var(--padding-low));
+    cursor: pointer;
+}
+
+.main-content.login .card form .message{
+    font-size: var(--font-size-secondary);
+    color: var(--font-dim);
+    text-align: center;
+    margin-top: var(--padding-main);
+    display: none;
+}
+.main-content.login .card form .message.error{
+    color: var(--font-danger);
+    display: block;
+}
+.main-content.login .card form .message.success{
+    color: var(--font-success);
+    display: block;
+}
+
+.loading-element{
+
+    background: linear-gradient(130deg, var(--background-lite) 45%, #1b2331bb 50%, var(--background-lite) 55%);
+    border-radius: var(--border-radius-main);
+    background-size: 300%;
+    background-position-x: 0%;
+    color: transparent !important;
+    animation: shimmer 2s infinite linear;
+}
+.loading-element > * {
+    opacity: 0;
+}
+
+
+@keyframes shimmer {
+    to {
+       background-position-x: -200%
+    }
+ }
+
+
 
 /* Overriding Quill.js themes */
 .ql-editor.ql-blank::before{

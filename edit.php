@@ -7,8 +7,6 @@
     <link href="css/main.css" type="text/css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.bubble.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>  
-    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
-    <script src="/js/apexcharts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
     <!-- <script src="/js/main.js"></script> -->
 </head>
@@ -20,7 +18,7 @@
                 <path d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z"></path>
             </svg>
         </button>
-        <object class="logo" type="image/svg+xml" data="https://midia.interposto.com/icones/logo.svg" aria-label="Interposto">Interposto</object>
+        <object class="logo" type="image/svg+xml" data="images/logo.svg" aria-label="Interposto">Interposto</object>
         <span class="heading">Editar Artigo</span>
     </header>
     <div class="main-content editing">

@@ -1,217 +1,129 @@
-window.addEventListener('DOMContentLoaded', (event) => {
+AuthorPublicationData = false;
 
+$(document).ready(function(){
+    console.log("mimo: Bem-vindo ao mimo, sistema interno da Interposto!");
 
-    $.getJSON("https://criar.interposto.com/data/1.json", function (rawData) {
+    // BARRA LATERAL
 
-        data = rawData[2].data;
+    var sidabar_container = $('#sidebar-projects');
+    var loading_element = sidabar_container.find('#loading');
+    requestSideBarData();
 
-        data_total_views = [];
-        data_unique_viewrs = [];
-        min_date = data[0].view_dates_unix_timestamp * 1000;
-
-        $.each(data, function (i, row) {
-
-            var date = row.view_dates_unix_timestamp * 1000;
-            var total_views = row.total_views;
-            var unique_viewers = row.unique_viewers;
-
-            data_total_views.push([date, total_views]);
-            data_unique_viewrs.push([date, unique_viewers]);
-            //console.log(date, unique_viewers, total_views);
-        })
-
-        loadChart(data_total_views, data_unique_viewrs,"#chart");
-
-
-
-    });
-
-    $.getJSON("https://criar.interposto.com/data/all.json", function (rawData) {
-
-        data = rawData[2].data;
-
-        data_total_views = [];
-        data_unique_viewrs = [];
-        min_date = data[0].view_dates_unix_timestamp * 1000;
-
-        $.each(data, function (i, row) {
-
-            var date = row.view_dates_unix_timestamp * 1000;
-            var total_views = row.total_views;
-            var unique_viewers = row.unique_viewers;
-
-            data_total_views.push([date, total_views]);
-            data_unique_viewrs.push([date, unique_viewers]);
-            //console.log(date, unique_viewers, total_views);
-        })
-
-        loadChart(data_total_views, data_unique_viewrs,"#general-stats");
-
-
-
-    });
+    function requestSideBarData(){
+        $.ajax({
+            url: 'php/getAuthorPublications.php', 
+            type: 'POST', 
+            dataType: 'json',
+            beforeSend: function() {
+                console.log("mimo: Requisitando informações sobre publicações em que o usuário é colaborador.");
+                sidabar_container.find("> :not(#loading)").remove();
+                loading_element.show();
+            },
+            success: function(response) {
+                // This function will be executed on a successful request
+                if (response.success) {
+                    console.log("mimo: Informações recebidas com sucesso.");
+                    AuthorPublicationData = response.data;
+                    loadSideBar();
+                } else {
+                    console.log('mimo: Nenhum dado foi encontrado.');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                // This function will be executed if the request fails
+                console.log('mimo: Houve um erro na aquisição de dados. Detalhes: \n\n ' + textStatus, errorThrown);
+            }
+        });
+    }
     
-    $.getJSON("https://criar.interposto.com/data/all_specific.json", function (rawData) {
 
-        data = rawData[2].data;
+    function loadSideBar(data, query = false){
 
-        loadChartAll(data,"#specific-stats");
+        if(!query){
+            data = AuthorPublicationData;
+        } 
 
+        if(data){
+            sidabar_container.find("> :not(#loading)").remove();
+            $.each(data, function(i, publication) {
 
+                var pub_container = $('<li></li>');
+                var author_container = $('<div class="project-author"></div>');
+                var author_tooltip_container = $('<span class="author-info-popup"></span>');
+                var author_tooltip_list_container= $('<ul></ul>');  
+                var project_name_container = $('<span class="project-name"><a href="edit.php?url='+publication.url+'">'+publication.pub_title+'</a></span>');    
+
+                var author_ids = publication.author_ids.split(",");
+                var author_names = publication.author_names.split(",");
+                $.each(author_ids, function(i, author_id) {
+                    var img = $('<img width="16px" height="16px" src="images/avatars/'+author_id+'.jpg"/>');
+                    author_container.append(img);
+
+                    var author_name = $('<li>'+author_names[i]+'</li>');
+                    author_tooltip_list_container.append(author_name);
+                });
+
+                author_tooltip_container.append(author_tooltip_list_container);
+                author_container.append(author_tooltip_container);
+
+                project_name_container.append('')
+
+                pub_container.append(author_container);
+                pub_container.append(project_name_container);
+                sidabar_container.append(pub_container);
+            });
+
+            loading_element.hide();
+
+        } else{
+            console.log('mimo: Houve um erro ao processar os dados.');
+        }
+    
+    }
+    
+    // Busca da barra lateral
+    var typingTimer;
+    $("#project-search").on('input',function(){
+
+        var query =  $(this).val();
+        var inputLength = query.length;
+        if(inputLength > 2){
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(function() {
+                $.ajax({
+                    url: 'php/searchAuthorPublications.php?q='+query, 
+                    type: 'GET', 
+                    dataType: 'json',
+                    beforeSend: function() {
+                        console.log("mimo: Realizando busca.");
+                        sidabar_container.find("> :not(#loading)").remove();
+                        loading_element.show();
+                    },
+                    success: function(response) {
+                        // This function will be executed on a successful request
+                        if (response.success) {
+                            console.log("mimo: Informações recebidas com sucesso.");
+                            sidabar_container.find("> :not(#loading)").remove();
+                            loadSideBar(response.data,true);
+                        } else {
+                            sidabar_container.find("> :not(#loading)").remove();
+                            loading_element.hide();
+                            console.log('mimo: Nenhum dado foi encontrado.');
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        // This function will be executed if the request fails
+                        console.log('mimo: Houve um erro na aquisição de dados. Detalhes: \n\n ' + textStatus, errorThrown);
+                    }
+                });
+              }, 500);
+        }
+        if(inputLength == 0){
+           clearTimeout(typingTimer);
+           requestSideBarData();
+
+        }
 
     });
-
-
-
 
 });
-
-function loadChart(data_total_views, data_unique_viewrs,id) {
-
-    var options = {
-        series: [{
-                name: 'Visualizações',
-                data: data_total_views
-            },
-            {
-                name: 'Visitantes Únicos',
-                data: data_unique_viewrs
-            }],
-        chart: {
-            type: 'area',
-            height: 350,
-            stacked: true,
-            background: "#000000",
-            foreColor: 'var(--font-main)',
-        },
-        colors: ['#008FFB', '#00E396'],
-        dataLabels: {
-            enabled: false
-        },
-        stroke: {
-            curve: 'monotoneCubic',
-            width: 2,
-        },
-        fill: {
-            type: 'gradient',
-            gradient: {
-                opacityFrom: 0.6,
-                opacityTo: 0.8,
-            }
-        },
-        legend: {
-            position: 'top',
-            horizontalAlign: 'left'
-        },
-        xaxis: {
-            type: 'datetime',
-            labels: {
-              formatter: function(value, timestamp, opts) {
-                return (new Date(timestamp).toLocaleString("pt-br",{dataStyle:"full",year:"2-digit",month:"short",day:"numeric"}));
-              }
-        }
-        },
-        theme: {
-            mode: 'dark',
-            palette: 'palette1',
-            monochrome: {
-                enabled: true,
-                color: '#255aee',
-                shadeTo: 'light',
-                shadeIntensity: 0.65
-            },
-        },
-        annotations: {
-           
-        },
-        yaxis: {
-            max: 600
-          }
-    };
-
-    var chart = new ApexCharts(document.querySelector(id), options);
-    chart.render();
-}
-
-function loadChartAll(data,id) {
-
-        data_total_views_1 = [];
-        data_total_views_2 = [];
-        data_total_views_3 = [];
-        data_total_views_4 = [];
-        data_total_views_5 = [];
-        
-        data_total_views = [data_total_views_1,data_total_views_2,data_total_views_3,data_total_views_4,data_total_views_5];
-        
-        min_date = 1696377600 * 1000;
-
-        $.each(data, function (i, row) {
-
-            var date = row.view_dates_unix_timestamp * 1000;
-            var total_views = row.total_views;
-            var pub_id = row.pub_id;
-        
-            data_total_views[pub_id-1].push([date, total_views]);
-        })
-
-    var options = {
-        series: [{
-                name: 'Artigo 1',
-                data: data_total_views[0]
-            },{
-                name: 'Artigo 2',
-                data: data_total_views[1]
-            },{
-                name: 'Artigo 3',
-                data: data_total_views[2]
-            },{
-                name: 'Artigo 4',
-                data: data_total_views[3]
-            },{
-                name: 'Artigo 5',
-                data: data_total_views[4]
-            }],
-        chart: {
-            type: 'area',
-            height: 350,
-            stacked: true,
-            background: "#000000",
-            foreColor: 'var(--font-main)',
-        },colors: ['#179B9B', '#006EDB','#894CEB','#CE2C85','#EB670F'],
-        dataLabels: {
-            enabled: false
-        },
-        stroke: {
-            width: 2,
-        },
-        fill: {
-            type: 'gradient',
-            gradient: {
-                opacityFrom: 0.6,
-                opacityTo: 0.8,
-            }
-        },
-        legend: {
-            position: 'top',
-            horizontalAlign: 'left'
-        },
-        xaxis: {
-            type: 'datetime',
-            labels: {
-              formatter: function(value, timestamp, opts) {
-                return (new Date(timestamp).toLocaleString("pt-br",{dataStyle:"full",year:"2-digit",month:"short",day:"numeric"}));
-              }
-        }
-        },
-        theme: {
-            mode: 'dark',
-            palette: 'palette1',
-        },
-        annotations: {
-           
-        }
-    };
-
-    var chart = new ApexCharts(document.querySelector(id), options);
-    chart.render();
-}
