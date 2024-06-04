@@ -742,6 +742,82 @@ aside .link-all {
     }
  }
 
+.image-bank{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--padding-low);
+    margin-top: var(--padding-low);
+}
+
+.image-bank img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1;
+    border-radius: var(--border-radius-main);
+    cursor: pointer;
+  }
+
+.image-bank button {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--background-lite);
+    border: 1px var(--border-lite) solid;
+    border-radius: var(--border-radius-main);
+    cursor: pointer; 
+}
+
+.image-bank button:hover {
+    background: var(--background-litest);
+}
+
+.card-content div[mimoImageContainer]{
+    margin: auto;
+    border-radius: var(--border-radius-main);
+    display: flex;
+    justify-content: center;
+}
+.card-content div[mimoImageContainer][gallery="true"]{
+    background-color: var(--background-litest);
+    padding: var(--padding-main);
+    border: 1px solid var(--border-lite);
+}
+.card-content div[mimoImageContainer] div[mimoImage]{
+    width: 16%;
+    aspect-ratio: 1;
+    border-radius: var(--border-radius-main);
+    background-color: var(--background-litest);
+    display: flex;
+    justify-content: center; 
+    align-content: center;
+}
+
+.card-content div[mimoImageContainer][gallery="true"] div[mimoImage]{
+    background-color: var(--border-lite-ultra);
+}
+
+.card-content div[mimoImageContainer] div[mimoImage] img{
+    object-fit: cover;
+    border-radius: var(--border-radius-main);
+}
+.card-content div[mimoImageContainer] .switches{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-content div[mimoImageContainer] .switches button{
+    color: var(--font-main);
+    box-sizing: content-box;
+    background: var(--background-litest);
+    border: 1px solid var(--border-lite);
+    border-radius: var(--border-radius-main);
+    margin: var(--padding-low);
+    padding: var(--padding-low);
+    cursor: pointer;
+}
+
+
 
 
 /* Overriding Quill.js themes */
